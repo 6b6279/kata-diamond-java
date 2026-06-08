@@ -1,5 +1,6 @@
 package de.cas.mse.exercise.diamond;
 
+import java.util.StringJoiner;
 import java.util.Arrays;
 
 public class Diamond {
@@ -8,23 +9,23 @@ public class Diamond {
 		if (numKarats <= 0 || numKarats % 2 == 0) {
 			return null;
 		}
-		StringBuilder builder = new StringBuilder();
+		
+		StringJoiner joiner = new StringJoiner("\n", "", "\n");
 
 		boolean maximumReached = false;
 		int currentWidth = 1;
-		while (currentWidth <= numKarats && !(maximumReached == true && currentWidth == -1)) {
+		while (!(maximumReached == true && currentWidth < 0)) {
 			if (currentWidth == numKarats) {
 				maximumReached = true;
 			}
-			String currentLine = "";
+			
 			char[] leadingSpaces = new char[(numKarats - currentWidth) / 2];
 			Arrays.fill(leadingSpaces, ' ');
 			char[] stars = new char[currentWidth];
 			Arrays.fill(stars, '*');
 
-			builder.append(currentLine.concat(new String(leadingSpaces))
-							.concat(new String(stars))
-							.concat("\n"));
+			joiner.add(new String(leadingSpaces)
+							.concat(new String(stars)));
 
 			if (maximumReached) {
 				// Start counting down, when the widest line is reached
@@ -34,7 +35,7 @@ public class Diamond {
 			}
 		}
 
-		return builder.toString();
+		return joiner.toString();
 	}
 
 }
