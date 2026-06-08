@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Diamond {
 
-	public static String print(int numKarats) {
+	public static String generateAscii(int numKarats) {
 		if (numKarats <= 0 || numKarats % 2 == 0) {
 			return null;
 		}
