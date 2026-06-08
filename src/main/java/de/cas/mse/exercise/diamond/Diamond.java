@@ -14,6 +14,7 @@ public class Diamond {
 
 		boolean maximumReached = false;
 		int currentWidth = 1;
+		// If we have already counted down, and the next line would contain no stars, abort
 		while (!(maximumReached == true && currentWidth < 0)) {
 			if (currentWidth == numKarats) {
 				maximumReached = true;
