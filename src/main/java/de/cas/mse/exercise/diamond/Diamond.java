@@ -4,28 +4,37 @@ import java.util.Arrays;
 
 public class Diamond {
 
-	public String print(int n) {
-		if (n <= 0 || n % 2 == 0) {
+	public static String print(int numKarats) {
+		if (numKarats <= 0 || numKarats % 2 == 0) {
 			return null;
 		}
-		StringBuilder builder = new StringBuilder(new String(make(n, n)));
-		for (int i = n - 2; i > 0; i -= 2) {
-			char[] chars = make(n, i);
-			builder.insert(0, chars);
-			builder.append(chars);
-		}
-		return builder.toString();
-	}
+		StringBuilder builder = new StringBuilder();
 
-	private char[] make(int i, int j) {
-		int amount = ((i - j) / 2);
-		char[] chars = new char[amount + j + 1];
-		if (amount > 0) {
-			Arrays.fill(chars, 0, amount, ' ');
+		boolean maximumReached = false;
+		int currentWidth = 1;
+		while (currentWidth <= numKarats && !(maximumReached == true && currentWidth == -1)) {
+			if (currentWidth == numKarats) {
+				maximumReached = true;
+			}
+			String currentLine = "";
+			char[] leadingSpaces = new char[(numKarats - currentWidth) / 2];
+			Arrays.fill(leadingSpaces, ' ');
+			char[] stars = new char[currentWidth];
+			Arrays.fill(stars, '*');
+
+			builder.append(currentLine.concat(new String(leadingSpaces))
+							.concat(new String(stars))
+							.concat("\n"));
+
+			if (maximumReached) {
+				// Start counting down, when the widest line is reached
+				currentWidth -= 2;
+			} else {
+				currentWidth += 2;
+			}
 		}
-		Arrays.fill(chars, amount, amount + j, '*');
-		chars[chars.length - 1] = '\n';
-		return chars;
+
+		return builder.toString();
 	}
 
 }

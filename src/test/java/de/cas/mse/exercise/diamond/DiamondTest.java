@@ -13,7 +13,7 @@ public class DiamondTest {
 		expected.append("***\n");
 		expected.append(" *\n");
 
-		String actual = new Diamond().print(3);
+		String actual = Diamond.print(3);
 		assertEquals(expected.toString(), actual);
 		System.out.println(actual);
 	}
@@ -27,7 +27,7 @@ public class DiamondTest {
 		expected.append(" ***\n");
 		expected.append("  *\n");
 
-		String actual = new Diamond().print(5);
+		String actual = Diamond.print(5);
 		assertEquals(expected.toString(), actual);
 		System.out.println(actual);
 	}
